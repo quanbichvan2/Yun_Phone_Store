@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\QuanBichVanPS28709_ASM.props" />
+</Project>
