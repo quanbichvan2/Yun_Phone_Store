@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Entities
 {
-    public class Accounts : EntityAuditBase
+    public class Accounts : EntityAuditBase // : EntityAuditBase
     {
         [Key] public Guid Id { get; set; } = Guid.NewGuid(); //  Guid.NewGuid(); tự random Id
         [ForeignKey("ProfileId")]

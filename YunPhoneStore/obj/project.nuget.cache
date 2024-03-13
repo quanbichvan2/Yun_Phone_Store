@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yUtfctX5vtqEvKpQb6V+Ylsg0uP1t843lsS/zO5bZbIlnDkTeCyXdBSbpnZPo73KaA3xRAIL9eW0kP3VNFVc7g==",
+  "dgSpecHash": "KLW9jlE6Xb/TYRxdwRwu4JX/WgHj/0kf5Xi+5cVQI1XXV0j8SaN7nQTMbAHBp3Icis2SK3Dl3w/3/QJOp0Qa0g==",
   "success": true,
-  "projectFilePath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\QuanBichVanPS28709_ASM\\QuanBichVanPS28709_ASM.csproj",
+  "projectFilePath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\YunPhoneStore\\QuanBichVanPS28709_ASM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yun PC\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Yun PC\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

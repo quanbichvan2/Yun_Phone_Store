@@ -10,7 +10,7 @@ namespace Persistence.Entities.Bases
     {
         public DateTimeOffset CreateDate { get; set; } = DateTimeOffset.Now;
 
-        public Guid CreateBy { get; set; }
+        public Guid? CreateBy { get; set; } // người đầu tiên thì null
 
         public DateTimeOffset? UpdateDate { get; set;} = DateTimeOffset.Now;
 

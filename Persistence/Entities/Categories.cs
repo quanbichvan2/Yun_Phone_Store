@@ -12,7 +12,7 @@ namespace Persistence.Entities
     public class Categories : EntityAuditBase
     {
         [Key]
-        public Guid Id { get; set; }     = Guid.NewGuid();
+        public Guid Id { get; set; } = Guid.NewGuid();
         // Guid là 1 dạng dữ liệu chuỗi không phải string, nó random ra 1 key không bao giờ có sự trùng lặp
         [ForeignKey("BrandId")]
         public Guid BrandId { get; set; }
