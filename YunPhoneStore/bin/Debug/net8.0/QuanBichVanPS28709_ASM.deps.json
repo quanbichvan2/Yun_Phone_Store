@@ -9,7 +9,9 @@
       "QuanBichVanPS28709_ASM/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Tools": "8.0.2",
-          "Persistence": "1.0.0"
+          "Persistence": "1.0.0",
+          "DataAccess": "1.0.0.0",
+          "Service": "1.0.0.0"
         },
         "runtime": {
           "QuanBichVanPS28709_ASM.dll": {}
@@ -863,6 +865,22 @@
         "runtime": {
           "Persistence.dll": {}
         }
+      },
+      "DataAccess/1.0.0.0": {
+        "runtime": {
+          "DataAccess.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Service/1.0.0.0": {
+        "runtime": {
+          "Service.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1406,6 +1424,16 @@
     },
     "Persistence/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DataAccess/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Service/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

@@ -8,7 +8,11 @@ namespace QuanBichVanPS28709_ASM.Controllers
         {
             return View();
         }
-        public IActionResult Details() // đặt tên web trên Folder Product sao thì đây cũng phải same
+        public IActionResult Phone() // đặt tên web trên Folder Product sao thì đây cũng phải same
+        {
+            return View();
+        }
+        public IActionResult Laptop() // đặt tên web trên Folder Product sao thì đây cũng phải same
         {
             return View();
         }

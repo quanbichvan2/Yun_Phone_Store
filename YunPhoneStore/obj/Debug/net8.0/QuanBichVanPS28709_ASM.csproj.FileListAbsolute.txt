@@ -280,3 +280,7 @@ E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\bin\Debug\net8.0\QuanBichVanPS28709_ASM.
 E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\obj\Debug\net8.0\QuanBichVanPS28709_ASM.csproj.CopyComplete
 E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\obj\Debug\net8.0\QuanBichVanPS28709_ASM.genruntimeconfig.cache
 E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\obj\Debug\net8.0\ref\QuanBichVanPS28709_ASM.dll
+E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\bin\Debug\net8.0\DataAccess.dll
+E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\bin\Debug\net8.0\Service.dll
+E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\bin\Debug\net8.0\DataAccess.pdb
+E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore\bin\Debug\net8.0\Service.pdb

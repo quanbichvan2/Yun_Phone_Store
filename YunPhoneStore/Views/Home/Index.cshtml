@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Persistence.Entities
+@model IEnumerable<Products>
+@{
+    List<string> columnames = ViewBag.columnNames;
     ViewData["Title"] = "Home Page";
 }
 
@@ -41,7 +44,7 @@
     <div class="container my-5">
 
         <header class="mb-4 d-flex align-items-center justify-content-center" style="color: orange">
-            <h1>New Flowers</h1>
+            <h1>New Hot Sale</h1>
         </header>
         <div class="row">
             <!-- sp moi -->

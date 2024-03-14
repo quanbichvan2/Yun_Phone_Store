@@ -18,20 +18,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\FPT\C#4\NET104\Asm\ASM\YunPhoneStore
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Cart/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Product/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Product/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
+[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Product/Laptop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxMYXB0b3AuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Product/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+[E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Product/Phone.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxQaG9uZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/FPT/C\#4/NET104/Asm/ASM/YunPhoneStore/Views/Shared/Error.cshtml]

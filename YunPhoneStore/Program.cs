@@ -1,5 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using QuanBichVanPS28709_ASM.DataAccess;
+using QuanBichVanPS28709_ASM.DataAccess.Base;
+using QuanBichVanPS28709_ASM.DataAccess.DataAccessImp;
+using QuanBichVanPS28709_ASM.DataAccess.RepositoryImp;
+using QuanBichVanPS28709_ASM.Services;
+using QuanBichVanPS28709_ASM.Services.ServiceImp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +13,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
