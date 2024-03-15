@@ -28,7 +28,7 @@ namespace QuanBichVanPS28709_ASM.DataAccess.DataAccessImp
             return true;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllEntities(Filter filter)
+        public async Task<IEnumerable<TEntity>> GetAllEntities(Filter? filter)
         {
             return null;
         }

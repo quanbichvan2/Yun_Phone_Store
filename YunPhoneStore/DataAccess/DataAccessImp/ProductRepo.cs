@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Entities;
 using QuanBichVanPS28709_ASM.DataAccess.DataAccessImp;
@@ -27,9 +28,9 @@ namespace QuanBichVanPS28709_ASM.DataAccess.RepositoryImp
             return await DeleteEntity(products);
         }
 
-        public async Task<IEnumerable<Products>> GetAllProducts(Filter filter)
+        public async Task<IEnumerable<Products>> GetAllProducts(Filter? filter)
         {
-            return await GetAllEntities(filter);
+            return await _context.Products.Skip(filter.CurrentPage - 1).Take(filter.PageSize).ToListAsync();
         }
 
         public async Task<Products> GetProductById(Guid ProductId)

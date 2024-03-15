@@ -1,5 +1,6 @@
 ﻿using Persistence.Entities;
 using QuanBichVanPS28709_ASM.Models;
+using QuanBichVanPS28709_ASM.Models.ProductDto;
 
 namespace QuanBichVanPS28709_ASM.Services
 {
@@ -14,7 +15,7 @@ namespace QuanBichVanPS28709_ASM.Services
 
         Task<Products> GetProductById(Guid ProductId);
 
-        Task<IEnumerable<Products>> GetAllProducts(Filter filter); // dùng IEnumerable dùng để đọc foreach
+        Task<IEnumerable<GetProductsToView>> GetAllProducts(Filter? filter); // dùng IEnumerable dùng để đọc foreach
 
     }
 }

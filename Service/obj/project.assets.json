@@ -990,9 +990,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "8.0.3",
-          "Persistence": "1.0.0",
-          "QuanBichVanPS28709_ASM": "1.0.0"
+          "Microsoft.EntityFrameworkCore": "8.0.3"
         },
         "compile": {
           "bin/placeholder/DataAccess.dll": {}
@@ -1014,22 +1012,6 @@
         "runtime": {
           "bin/placeholder/Persistence.dll": {}
         }
-      },
-      "QuanBichVanPS28709_ASM/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Persistence": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/QuanBichVanPS28709_ASM.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/QuanBichVanPS28709_ASM.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -2778,18 +2760,12 @@
       "type": "project",
       "path": "../Persistence/Persistence.csproj",
       "msbuildProject": "../Persistence/Persistence.csproj"
-    },
-    "QuanBichVanPS28709_ASM/1.0.0": {
-      "type": "project",
-      "path": "../YunPhoneStore/QuanBichVanPS28709_ASM.csproj",
-      "msbuildProject": "../YunPhoneStore/QuanBichVanPS28709_ASM.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "DataAccess >= 1.0.0",
-      "Persistence >= 1.0.0",
-      "QuanBichVanPS28709_ASM >= 1.0.0"
+      "Persistence >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2829,9 +2805,6 @@
             },
             "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\Persistence\\Persistence.csproj": {
               "projectPath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\Persistence\\Persistence.csproj"
-            },
-            "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\YunPhoneStore\\QuanBichVanPS28709_ASM.csproj": {
-              "projectPath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\YunPhoneStore\\QuanBichVanPS28709_ASM.csproj"
             }
           }
         }

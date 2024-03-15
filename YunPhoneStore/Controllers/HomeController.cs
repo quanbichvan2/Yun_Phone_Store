@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Persistence.Entities;
 using QuanBichVanPS28709_ASM.Models;
+using QuanBichVanPS28709_ASM.Models.ProductDto;
 using QuanBichVanPS28709_ASM.Services;
 using System.Diagnostics;
 
@@ -8,22 +10,18 @@ namespace QuanBichVanPS28709_ASM.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
-        public HomeController(IProductService productService)
+        private readonly ILogger<HomeController> _logger; // check log
+        public HomeController(IProductService productService, ILogger<HomeController> logger)
         {
             _productService = productService;
-        }
-        private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
-        {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        
+        public async Task <IActionResult> Index()
         {
-            //var columnNames = 
-            //ViewBag.Products = columnNames;
-            //return View(object);
-            return View();
+            Filter pagination = new Filter();
+            IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(pagination);
+            return View(products);
         }
 
         public IActionResult Contact()

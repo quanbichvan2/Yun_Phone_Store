@@ -1,9 +1,11 @@
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using QuanBichVanPS28709_ASM.DataAccess;
 using QuanBichVanPS28709_ASM.DataAccess.Base;
 using QuanBichVanPS28709_ASM.DataAccess.DataAccessImp;
 using QuanBichVanPS28709_ASM.DataAccess.RepositoryImp;
+using QuanBichVanPS28709_ASM.MappingProfiles;
 using QuanBichVanPS28709_ASM.Services;
 using QuanBichVanPS28709_ASM.Services.ServiceImp;
 
@@ -14,9 +16,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+//builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+// đăng ký service cho productRepo và ProductService
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new ProductProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

@@ -1,16 +1,20 @@
 ﻿
+using AutoMapper;
 using Persistence.Entities;
 using QuanBichVanPS28709_ASM.DataAccess;
 using QuanBichVanPS28709_ASM.Models;
+using QuanBichVanPS28709_ASM.Models.ProductDto;
 
 namespace QuanBichVanPS28709_ASM.Services.ServiceImp
 {
     public class ProductService : IProductService
     {
         private readonly IProductRepo _productRepo;
-        public ProductService(IProductRepo productRepo) 
+        private readonly IMapper _mapper;
+        public ProductService(IProductRepo productRepo, IMapper mapper) 
         {
             _productRepo = productRepo;
+            _mapper = mapper;
         }
         public async Task<Products> CreateProduct(Products products)
         {
@@ -40,11 +44,13 @@ namespace QuanBichVanPS28709_ASM.Services.ServiceImp
             return true;
         }
 
-        public async Task<IEnumerable<Products>> GetAllProducts(Filter filter)
+        public async Task<IEnumerable<GetProductsToView>> GetAllProducts(Filter? filter) // filter dùng để phân trang
         {
             try
             {
-                return await _productRepo.GetAllProducts(filter);
+                IEnumerable<Products> products = await _productRepo.GetAllProducts(filter);
+                IEnumerable<GetProductsToView> res = _mapper.Map<IEnumerable<GetProductsToView>>(products);
+                return res;
             }
             catch (Exception ex)
             {

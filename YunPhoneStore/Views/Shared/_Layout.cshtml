@@ -164,5 +164,25 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    console.log("test");
+    function togglePasswordVisibility(inputId, iconId) {
+        const passwordInput = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(iconId);
+
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        eyeIcon.classList.toggle('bi-eye');
+        eyeIcon.classList.toggle('bi-eye-slash');
+    }
+
+    document.getElementById('togglePassword').addEventListener('click', () => {
+        togglePasswordVisibility('passwordForRegistration', 'eye');
+    });
+
+    document.getElementById('toggleConfirmPassword').addEventListener('click', () => {
+        togglePasswordVisibility('confirmPasswordForRegistration', 'eyeConfirm');
+    });
+</script>
 @await RenderSectionAsync("Scripts", required: false)
 </html>

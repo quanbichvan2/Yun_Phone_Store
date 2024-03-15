@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuanBichVanPS28709_ASM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c51a49745b97b0cb0f2e3f707df7979be9fa41a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65654c6bd7275175703207c3e7e7f8dda7bb0bbd")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuanBichVanPS28709_ASM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuanBichVanPS28709_ASM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
