@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Persistence;
+using Persistence.Data;
 using QuanBichVanPS28709_ASM.DataAccess.Base;
 using QuanBichVanPS28709_ASM.Models;
 
