@@ -35,7 +35,7 @@ namespace QuanBichVanPS28709_ASM.DataAccess.DataAccessImp
 
         public async Task<TEntity> GetEntityById(Guid id)
         {
-            // return await _context.FindAsync(id);
+            // return await _context.FindFindAsync(id);
             return null;
         }
 

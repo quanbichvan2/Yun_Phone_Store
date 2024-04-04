@@ -1,0 +1,89 @@
+﻿@using QuanBichVanPS28709_ASM.Models.ProductDto
+
+@model IEnumerable<GetProductsToView>
+
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            @foreach (var item in Model)
+            {
+                <div class="border p-3 mt-4">
+                    <div class="row pb-2">
+                        <h2 class="text-primary">@((item.Id != Guid.Empty) ? "Update" : "Create") Product</h2>
+                    </div>
+                    <div asp-validation-summary="All"></div>
+
+                    @*Không xóa và chỉ ẩn id với link ảnh khi create nhớ nhé *@
+                    <div class="mb-3 row">
+                        <div class="col-2">
+                            <label asp-for="@item.Id"></label>
+                            <input style="width:150px" class="form-control" readonly asp-for="@item.Id" />
+                        </div>
+                        <div class="col-3" hidden>
+                            <label asp-for="@item.CreateDate"></label>
+                            <input class="form-control" readonly asp-for="@item.CreateDate" />
+                        </div>
+                        <div class="col-2" hidden>
+                            <label asp-for="@item.CreateBy"></label>
+                            <input class="form-control" readonly asp-for="@item.CreateBy" />
+                        </div>
+                        <div class="col-3" hidden>
+                            <label asp-for="@item.UpdateDate"></label>
+                            <input class="form-control" readonly asp-for="@item.UpdateDate" />
+                        </div>
+                        <div class="col-2" hidden>
+                            <label asp-for="@item.UpdateBy"></label>
+                            <input class="form-control" readonly asp-for="@item.UpdateBy" />
+                        </div>
+                    </div>
+                    <hr class="text-primary" />
+
+                    <div class="mb-3 row">
+                        <div class="col-12 col-md-6">
+                            <label asp-for="@item.Name"></label>
+                            <input class="form-control" type="text" asp-for="@item.Name" placeholder="Input Product Name..." />
+                            <span class="text-danger" asp-validation-for="@item.Name"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label asp-for="@item.CategoryName"></label>
+                            <input class="form-control" rows="6" asp-for="@item.CategoryName" placeholder="Input Product Category..." />
+                            <span class="text-danger" asp-validation-for="@item.CategoryName"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-3" hidden>
+                            <label asp-for="@item.Image"></label>
+                            <input class="form-control" readonly asp-for="@item.Image" />
+                        </div>
+                        <div class="col-2">
+                            <label asp-for="@item.Memory"></label>
+                            <input class="form-control" type="text" asp-for="@item.Memory" placeholder="Input Product Memory..." />
+                            <span class="text-danger" asp-validation-for="@item.Memory"></span>
+                        </div>
+                        <div class="col-2">
+                            <label asp-for="@item.Color"></label>
+                            <input class="form-control" type="text" asp-for="@item.Color" placeholder="Input Product Color..." />
+                            <span class="text-danger" asp-validation-for="@item.Color"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="@item.CPU"></label>
+                            <input class="form-control" type="text" asp-for="@item.CPU" placeholder="Input Product CPU..." />
+                            <span class="text-danger" asp-validation-for="@item.CPU"></span>
+                        </div>
+                        <div class="col-2">
+                            <label asp-for="@item.Price"></label>
+                            <input class="form-control" type="text" asp-for="@item.Price" placeholder="Input Product price..." />
+                            <span class="text-danger" asp-validation-for="@item.Price"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label asp-for="@item.Description"></label>
+                        <textarea class="form-control" rows="6" asp-for="@item.Description" placeholder="Input Product Description...">
+
+                    </textarea>
+                        <span class="text-danger" asp-validation-for="@item.Description"></span>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>

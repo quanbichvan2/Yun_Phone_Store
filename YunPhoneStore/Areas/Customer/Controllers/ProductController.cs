@@ -28,7 +28,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
         public async Task<IActionResult> Laptop()
         {
             FilterProduct filter = new FilterProduct();
-            filter.CategoryId = new Guid("3ebdca6b2b504728ab9df03bc3e3242c");
+            filter.CategoryId = new Guid("d0bf42cba77945b78e93429944023ee9");
             IEnumerable<GetProductsToView> products = await _productService.GetAllProductsByCategoryId(filter);
             return View(products);
         }
@@ -36,7 +36,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
         public async Task<IActionResult> Phone() // đặt tên web trên Folder Product sao thì đây cũng phải same
         {
             FilterProduct filter = new FilterProduct();
-            filter.CategoryId = new Guid("c39b327a96df4e25ad266e66bc69f8a3");
+            filter.CategoryId = new Guid("6ef6e3f6af5c4426acc783efe00051d4");
             IEnumerable<GetProductsToView> products = await _productService.GetAllProductsByCategoryId(filter);
             return View(products);
         }

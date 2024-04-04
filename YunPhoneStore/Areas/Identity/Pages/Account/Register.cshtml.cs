@@ -75,6 +75,16 @@ namespace QuanBichVanPS28709_ASM.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+
+            [Display(Name = "Fullname")]
+            public string FullName { get; set; }
+
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [Display(Name = "BirthDate")]
+            public DateTimeOffset BirthDate { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -114,6 +124,10 @@ namespace QuanBichVanPS28709_ASM.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.FullName = Input.FullName;
+                user.Address =  Input.Address;
+                user.BirthDate  = Input.BirthDate;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

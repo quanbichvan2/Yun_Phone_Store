@@ -4,25 +4,27 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
-        </form>
-    </li>
+
+    <a asp-area="Identity" asp-page="/Account/Manage/Index">
+        <img alt="Man"
+             src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+             class="img-fluid rounded-circle"
+             style="width: 37px; height: 37px; object-fit: cover;" />
+    </a>
+
+    <form id="logoutForm" class="btn rounded-pill bg-light text-secondary border-0 shadow-sm hover-text-dark me-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+    </form>
+
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+
+    <a class="btn rounded-pill bg-light text-secondary border-0 shadow-sm hover-text-dark me-2" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+    <a class="btn rounded-pill bg-light text-secondary border-0 shadow-sm hover-text-dark me-2" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
 }
-</ul>
+

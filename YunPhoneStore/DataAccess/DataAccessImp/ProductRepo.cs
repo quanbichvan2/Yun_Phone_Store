@@ -29,7 +29,7 @@ namespace QuanBichVanPS28709_ASM.DataAccess.DataAccessImp
 
         public async Task<IEnumerable<Product>> GetAllProducts(Filter? filter)
         {
-            return await _context.Products.Skip(filter.CurrentPage - 1).Take(filter.PageSize).ToListAsync();
+            return await _context.Products.Skip((filter.CurrentPage - 1) * filter.PageSize).Take(filter.PageSize).Include(p => p.Category).ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> GetAllProductsByCategoryId(FilterProduct filter)
@@ -39,7 +39,7 @@ namespace QuanBichVanPS28709_ASM.DataAccess.DataAccessImp
 
         public async Task<Product> GetProductById(Guid ProductId)
         {
-            return await _context.Products.Where(p => p.Id == ProductId).FirstOrDefaultAsync();
+            return await _context.Products.Where(p => p.Id == ProductId).Include(c => c.Category).FirstOrDefaultAsync();
         }
 
         public async Task<Product> UpdateProduct(Product product)

@@ -9,6 +9,7 @@ namespace QuanBichVanPS28709_ASM.Models.ProductDto
         public Guid Id { get; set; }
 
         public string CategoryName { get; set; }
+        /*public Category? Category { get; set; }*/
 
         public string Name { get; set; }
         
@@ -23,5 +24,14 @@ namespace QuanBichVanPS28709_ASM.Models.ProductDto
         public float Price { get; set; }
 
         public string? Description { get; set; }
+
+        public DateTimeOffset CreateDate { get; set; }
+
+        public Guid? CreateBy { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
+
+        public Guid? UpdateBy { get; set; }
+
     }
 }

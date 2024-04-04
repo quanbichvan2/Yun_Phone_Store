@@ -1,0 +1,69 @@
+﻿@using Persistence.Entities
+@using QuanBichVanPS28709_ASM.Models.CategoryDto
+@using QuanBichVanPS28709_ASM.Models.ProductDto
+@{
+    GetProductsToView product = ViewBag.Product;
+    IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
+}
+
+<section>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@product.Id" />
+                <div class="form-group">
+                    <span asp-validation-for="@product.CategoryName" class="text-danger"></span>
+                    <select asp-for="@product.CategoryName"
+                            asp-items="@(new SelectList(categories, nameof(Category.Id), nameof(Category.CategoryName)))">
+                        <option>Please select one</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@product.Name" class="control-label"></label>
+                    <input asp-for="@product.Name" class="form-control" />
+                    <span asp-validation-for="@product.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@product.Memory" class="control-label"></label>
+                    <input asp-for="@product.Memory" class="form-control" />
+                    <span asp-validation-for="@product.Memory" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@product.Color" class="control-label"></label>
+                    <input asp-for="@product.Color" class="form-control" />
+                    <span asp-validation-for="@product.Color" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@product.Image" class="control-label"></label>
+                    <input asp-for="@product.Image" class="form-control" />
+                    <span asp-validation-for="@product.Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@product.Price" class="control-label"></label>
+                    <input asp-for="@product.Price" class="form-control" />
+                    <span asp-validation-for="@product.Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@product.Description" class="control-label"></label>
+                    <input asp-for="@product.Description" class="form-control" />
+                    <span asp-validation-for="@product.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<div>
+    <a asp-area="admin" asp-controller="Product" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -87,16 +87,27 @@ namespace QuanBichVanPS28709_ASM.Services.ServiceImp
             }
         }
 
-        public async Task<Product> UpdateProduct(Guid ProductId, Product product)
+        public async Task<GetProductsToView> UpdateProduct(Guid ProductId, ProductUpdateDto productDto)
         {
             try
             {
-                return await _productRepo.UpdateProduct(product);
+                Product product = await _productRepo.GetProductById(ProductId);
+                if(product != null)
+                {
+                    Product productUpdate = _mapper.Map<Product>(productDto);
+                    Product res = await _productRepo.UpdateProduct(productUpdate);
+                    if(res != null)
+                    {
+                        GetProductsToView productsToView = _mapper.Map<GetProductsToView>(res);
+                        return productsToView;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 return null;
             }
+            return null;
         }
     }
 }

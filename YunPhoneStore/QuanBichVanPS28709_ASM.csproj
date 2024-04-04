@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Remove="Services\ServiceImp\ProductServiceImp.cs" />
+    <Compile Remove="Services\ServiceImp\ProductUpdate.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Areas\Admin\Views\Home\NewFile.txt" />
+    <None Remove="Services\ServiceImp\NewFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.3" />
@@ -20,7 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\Admin\Models\ProductDto\" />
+    <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="wwwroot\image\" />
   </ItemGroup>
 

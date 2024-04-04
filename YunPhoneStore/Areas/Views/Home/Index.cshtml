@@ -1,0 +1,187 @@
+﻿@using QuanBichVanPS28709_ASM.Models.ProductDto
+@model IEnumerable<GetProductsToView>
+@{
+    //List<string> columnames = ViewBag.columnNames;
+    //ViewData["Title"] = "Home Page";
+}
+
+<section>
+    <!-- phần ảnh động carouse -->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block"
+                     src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/03/banner/y36-720-220-720x220.png"
+                     style="height: 100%;width: -webkit-fill-available;" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block "
+                     src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/03/banner/reno11f-720-220-720x220.png"
+                     style="height: 100%;width: -webkit-fill-available;" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block "
+                     src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/02/banner/Lap-Khai-Xun-720-220-720x220.png"
+                     style="height: 100%; width: -webkit-fill-available;" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block "
+                     src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/03/banner/PK.83-720-220-720x220.png"
+                     style="height: 100%; width: -webkit-fill-available;" alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+            <i class="bi bi-caret-left-fill"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+            <i class="bi bi-caret-right-fill"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<section>
+    <div class="container my-5">
+
+        <header class="mb-4 d-flex align-items-center justify-content-center" style="color: orange">
+            <h1>New Hot Sale</h1>
+        </header>
+        <div class="row">
+            <!-- sp moi -->
+            <!-- TODO thêm ng-repeat vào đây-->
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex" ng-repeat="p in products| limitTo: 8">
+                    <div class="card w-100 my-2 shadow-2-strong p-2">
+                        <a class="" asp-action="Detail" asp-controller="Product" asp-route-id=@item.Id>
+                            <img class="group block overflow-hidden rounded w-100" src="@item.Image" style="object-fit: contain; height: 20rem;" />
+                            <!-- <img src="https:img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-trang-13-600x600.jpg" class="card-img-top" style="aspect-ratio: 1 / 1" /> -->
+                            <!-- <img src="../image/products/{{p.hinh}}" class="card-img-top" style="aspect-ratio: 1 / 1" /> -->
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title" style="height: 3rem;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">
+                                @item.Name
+                            </h5>
+                            <div class="text-truncate">@item.Description</div>
+                            <div class="card-price-star-container mt-5 flex items-center justify-between">
+                                <div class="flex items-center gap-x-2 text-base product-price" data-cy="product-price">
+                                    <!---->
+                                    <div class="flex items-center gap-x-2">
+                                        <!---->
+                                        <span class="text-danger"><s>discount €</s></span>
+                                        <h5 class="mb-1 me-1">@item.Price €</h5>
+                                    </div>
+                                </div>
+                                <div class="float-right" data-layer-event="catalog" data-layer-type="click" data-layer-category="catalog"
+                                     data-layer-action="reviews-in-card" data-layer-label="FQ2328">
+                                    <!-- thả sao -->
+                                    <div class="d-flex flex-row my-3">
+                                        <div class="text-warning mb-1 me-2">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span class="ms-1">
+                                                4.5
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                                <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                                <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover" style="background-color: pink;">
+                                    <i class="fas fa-heart fa-lg text-secondary px-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- blog -->
+<section class="mt-5 mb-4">
+    <div class="container text-dark">
+        <header class="mb-4">
+            <h3>Blog posts</h3>
+        </header>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <article>
+                    <a href="#" class="img-fluid">
+                        <img class="rounded w-100" src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/01/banner/chuyentrang-appleDT-390x210.png"
+                             style="object-fit: cover; height: 20rem;" />
+                    </a>
+                    <div class="mt-2 text-muted small d-block mb-1">
+                        <span>
+                            <i class="fa fa-calendar-alt fa-sm"></i>
+                            23.12.2022
+                        </span>
+                        <a href="#">
+                            <h6 class="text-dark">How to promote brands</h6>
+                        </a>
+                        <p>When you enter into any new area of science, you almost reach</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <article>
+                    <a href="#" class="img-fluid">
+                        <img class="rounded w-100" src="https://cdn2.cellphones.com.vn/1200x400/https://cdn.sforum.vn/sforum/wp-content/uploads/2024/03/iphone-15-mau-hong-3.jpeg"
+                             style="object-fit: cover; height: 20rem;" />
+                    </a>
+                    <div class="mt-2 text-muted small d-block mb-1">
+                        <span>
+                            <i class="fa fa-calendar-alt fa-sm"></i>
+                            13.12.2022
+                        </span>
+                        <a href="#">
+                            <h6 class="text-dark">How we handle shipping</h6>
+                        </a>
+                        <p>When you enter into any new area of science, you almost reach</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <article>
+                    <a href="#" class="img-fluid">
+                        <img class="rounded w-100" src="https://cdn2.cellphones.com.vn/1200x400/https://cdn.sforum.vn/sforum/wp-content/uploads/2024/03/tra-gop-5.jpg"
+                             style="object-fit: cover; height: 20rem;" />
+                    </a>
+                    <div class="mt-2 text-muted small d-block mb-1">
+                        <span>
+                            <i class="fa fa-calendar-alt fa-sm"></i>
+                            25.11.2022
+                        </span>
+                        <a href="#">
+                            <h6 class="text-dark">How to promote brands</h6>
+                        </a>
+                        <p>When you enter into any new area of science, you almost reach</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <article>
+                    <a href="#" class="img-fluid">
+                        <img class="rounded w-100" src="https://cdn2.cellphones.com.vn/1200x400/https://cdn.sforum.vn/sforum/wp-content/uploads/2024/02/OnePlus-12R-vs-iPhone-15-cover.jpeg"
+                             style="object-fit: cover; height: 20rem;" />
+                    </a>
+                    <div class="mt-2 text-muted small d-block mb-1">
+                        <span>
+                            <i class="fa fa-calendar-alt fa-sm"></i>
+                            03.09.2022
+                        </span>
+                        <a href="#">
+                            <h6 class="text-dark">Success story of sellers</h6>
+                        </a>
+                        <p>When you enter into any new area of science, you almost reach</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
