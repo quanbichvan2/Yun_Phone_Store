@@ -38,10 +38,16 @@ option.SignIn.RequireConfirmedAccount = false)
 .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartRepo, CartRepo>();
+builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IProductService, ProductService>();
 //builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+builder.Services.AddMvc()
+        .AddSessionStateTempDataProvider();
+builder.Services.AddSession();
 SetRolePolicy(builder.Services);
 
 //ModelBuilderExtensions.Seed()
@@ -50,7 +56,8 @@ builder.Services.AddRazorPages();
 var mapperConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new ProductProfile()); 
-    mc.AddProfile(new CategoryProfile());
+    mc.AddProfile(new CategoryProfile()); 
+    mc.AddProfile(new CartProfile());
 });
 
 IMapper mapper = mapperConfig.CreateMapper();
@@ -72,12 +79,15 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseSession();
 
 app.MapControllerRoute(
     name: "HomeDefault",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "HomeDefault",
+    pattern: "{area=admin}/{controller=Home}/{action=Index}/{id?}");
 //app.MapControllerRoute(
 //    name: "HomeAdmin",
 //    pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}");

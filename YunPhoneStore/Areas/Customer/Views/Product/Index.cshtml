@@ -1,0 +1,391 @@
+﻿@using QuanBichVanPS28709_ASM.Models.CategoryDto
+@using QuanBichVanPS28709_ASM.Models.ProductDto
+@{
+    ViewData["Title"] = "Product Page";
+    IEnumerable<GetProductsToView> products = ViewBag.Products;
+    IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
+    
+}
+
+<!-- phần ảnh giữa -->
+<section>
+    <div class="mb-4 col-12" style="background-color:rgb(68 132 135)">
+        <div class="container py-4">
+            <h3 class="text-white mt-2">Phone Shop</h3>
+            <!-- Breadcrumb -->
+            <nav class="d-flex mb-2">
+                <h6 class="mb-0">
+                    <a href="../index.html" class="text-white-50">Home</a>
+                    <span class="text-white-50 mx-2"> &gt; </span>
+                    <a href="#!list-view" class="text-white"><u>Brands</u></a>
+                </h6>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- đoạn search góc trái -->
+<section class="TypeOfFlower">
+    <div class="container">
+        <div class="row">
+            <!-- sidebar -->
+            <div class="col-lg-3">
+                <!-- Collapsible wrapper -->
+                <ul class="card d-lg-block mb-5" id="navbarSupportedContent">
+                    <li class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+                        Brand
+                    </li>
+                    @if (categories?.First().CategoryName == products?.First().CategoryName) // trong code nên dùng ? trước khi sử dụng 1 method của 1 list hoặc property
+                    // check xem thuộc tính có null hay không để được quyền đi tới, không thì stop luôn. Hạn chế gây bug crash
+                    {
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> MacBook </strong>
+                            </div>
+                        </label>
+                        <label for="Option2" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option2" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Dell </strong>
+                            </div>
+                        </label>
+                        <label for="Option3" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option3" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Asus </strong>
+                            </div>
+                        </label>
+                    }
+                    else
+                    {
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Apple </strong>
+                            </div>
+                        </label>
+                        <label for="Option2" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option2" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Samsung </strong>
+                            </div>
+                        </label>
+                        <label for="Option3" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option3" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Oppo </strong>
+                            </div>
+                        </label>
+                    }
+                    <li>
+                        <details class="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                <span class="text-sm font-medium"> Prices </span>
+                                <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-5 w-5"
+                                         viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            <div>
+                                <div id="panelsStayOpen-collapseThree" class="collapse-show">
+                                    <div class="bg-white p-4">
+                                        <div class="range">
+                                            <input type="range" class="form-range">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4 mb-3">
+                                            <div>
+                                                <p class="mb-0">Min</p>
+                                                <div class="form-outline">
+                                                    <input type="number" id="typeNumberMin" class="form-control"
+                                                           oninput="checkInputMoneyRange()">
+                                                    <label class="form-label" for="typeNumber" id="rangeMoneyMin">0.00€</label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">Max</p>
+                                                <div class="form-outline">
+                                                    <input type="number" id="typeNumberMax" class="form-control"
+                                                           oninput="checkInputMoneyRange()">
+                                                    <label class="form-label" for="typeNumber" id="rangeMoneyMax">100.00€</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn bg-white border border-gray-300 w-full">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+                    </li>
+                    <details class="group [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                            <span class="text-sm font-medium"> Size Screen </span>
+
+                            <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-5 w-5"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                          clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </summary>
+                        <div>
+                            <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                                <div class="flex items-center">
+                                    &#8203;
+                                    <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                                    <strong class="font-medium text-gray-900 m-2"> Small </strong>
+                                </div>
+                            </label>
+                            <label for="Option2" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                                <div class="flex items-center">
+                                    &#8203;
+                                    <input type="checkbox" class="size-4 rounded border-gray-300" id="Option2" />
+                                    <strong class="font-medium text-gray-900 m-2"> Medium </strong>
+                                </div>
+                            </label>
+                            <label for="Option3" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                                <div class="flex items-center">
+                                    &#8203;
+                                    <input type="checkbox" class="size-4 rounded border-gray-300" id="Option3" />
+                                    <strong class="font-medium text-gray-900 m-2"> Big </strong>
+                                </div>
+                            </label>
+                        </div>
+                    </details>
+
+                    <details class="group [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                            <span class="text-sm font-medium">Rates </span>
+
+                            <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-5 w-5"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                          clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </summary>
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                        </label>
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                            </div>
+                        </label>
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                            </div>
+                        </label>
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                            </div>
+                        </label>
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                            </div>
+                        </label>
+                    </details>
+                </ul>
+            </div><div class="col-lg-9">
+                <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
+                    <strong class="d-block py-2">
+                        <!-- 32 Items found  -->
+                    </strong>
+                    <div class="ms-auto">
+                        <select class="form-select d-inline-block w-auto border pt-1">
+                            <option value="0">The Best</option>
+                            <option value="1">Recommed</option>
+                            <option value="2">Good</option>
+                            <option value="3">Random</option>
+                        </select>
+                        <div class="btn-group shadow-0 border">
+                            <a href="#!list-view" class="btn btn-light active" title="List view">
+                                <i class="fa fa-bars fa-lg"></i>
+                            </a>
+                            <a href="#!list-view2" class="btn btn-light" title="Grid view">
+                                <i class="fa fa-th fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </header>
+                <!-- list chiều dọc -->
+                <div class="row col-12"
+                     ng-repeat="p in displayedProducts | limitTo: (currentPage - 1) * itemsPerPage + itemsPerPage">
+                    <div class="col-md-12">
+                        <!-- sp mới -->
+                        @foreach (var item in products)
+                        {
+                            <div class="card shadow-0 border rounded-3">
+                                <div class="card-body">
+                                    <div class="row g-0">
+                                        <div class="col-xl-3 col-md-4 d-flex justify-content-center">
+                                            <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
+                                                <!-- todo -->
+                                                <a class="" asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">
+                                                    <img class="group block overflow-hidden rounded w-100" src="@item.Image" style="object-fit: contain; height: 10rem;" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-5 col-sm-7">
+                                            <h5>@item.Name</h5>
+                                            <div class="d-flex flex-row">
+                                                <div class="text-warning mb-1 me-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                    <span class="ms-1">
+                                                        4.5
+                                                    </span>
+                                                </div>
+                                                <span class="text-muted">10 items Has Sold</span>
+                                            </div>
+                                            <p class="text mb-4 mb-md-0 text-truncate">
+                                                @item.Description
+                                            </p>
+                                        </div>
+                                        <div class="col-xl-3 col-md-3 col-sm-5">
+                                            <div class="d-flex flex-row align-items-center mb-1">
+                                                <h4 class="mb-1 me-1">@item.Price €</h4>
+                                                <span class="text-danger"><s>Discount €</s></span>
+                                            </div>
+                                            <h6 class="text-success">Free Ship</h6>
+                                            <div class="mt-4">
+                                                <button class="btn btn-primary shadow-0" type="button">Buy It</button>
+                                                <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover">
+                                                    <i class="fas fa-heart fa-lg px-1"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <hr>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="d-flex inline-flex items-center justify-center gap-3" style="margin-top:1rem;">
+                    <a href="#"
+                       class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+                        <span class="sr-only">Next Page</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                  clip-rule="evenodd" />
+                        </svg>
+                    </a>
+
+                    <p class="text-xs text-gray-900">
+                        1
+                        <span class="mx-0.25">/</span>
+                        12
+                    </p>
+
+                    <a href="#"
+                       class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+                        <span class="sr-only">Next Page</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                  clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+                @*  <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3 col-12">
+                <ul class="pagination">
+                <li class="page-item" ng-click="changePage(currentPage - 1)">
+                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+                </li>
+                <li class="page-item" ng-class="{ 'active': page === currentPage }" ng-repeat="page in pages">
+                <a class="page-link" href="javascript:void(0)" ng-click="changePage(page)">{{ page }}</a>
+                </li>
+                <li class="page-item" ng-click="changePage(currentPage + 1)">
+                <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li>
+                </ul>
+                </nav> *@
+                <!-- Pagination -->
+            </div>
+        </div>
+        <!-- sidebar -->
+        <!-- đoạn góc phải -->
+        <!-- content -->
+
+    </div>
+    </div>
+</section>
+

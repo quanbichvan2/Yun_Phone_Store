@@ -1,8 +1,10 @@
-﻿@using QuanBichVanPS28709_ASM.Models.ProductDto
+﻿@using QuanBichVanPS28709_ASM.Models.CategoryDto
+@using QuanBichVanPS28709_ASM.Models.ProductDto
 @model IEnumerable<GetProductsToView>
 @{
-    //List<string> columnames = ViewBag.columnNames;
-    //ViewData["Title"] = "Home Page";
+    IEnumerable<GetProductsToView> products = ViewBag.Products;
+    IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
+    ViewData["Title"] = "Home Page";
 }
 
 <section>
@@ -41,22 +43,20 @@
     </div>
 </section>
 <section>
-    <div class="container my-5">
+    <div class="container my-5" style="background: #000000c9;">
 
         <header class="mb-4 d-flex align-items-center justify-content-center" style="color: orange">
-            <h1>New Hot Sale</h1>
+            <h1 style="font-size: 5rem;">New Hot Sale</h1>
         </header>
         <div class="row">
             <!-- sp moi -->
             <!-- TODO thêm ng-repeat vào đây-->
-            @foreach (var item in Model)
+            @foreach (var item in products)
             {
                 <div class="col-lg-3 col-md-6 col-sm-6 d-flex" ng-repeat="p in products| limitTo: 8">
                     <div class="card w-100 my-2 shadow-2-strong p-2">
                         <a class="" asp-action="Detail" asp-controller="Product" asp-route-id=@item.Id>
                             <img class="group block overflow-hidden rounded w-100" src="@item.Image" style="object-fit: contain; height: 20rem;" />
-                            <!-- <img src="https:img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-trang-13-600x600.jpg" class="card-img-top" style="aspect-ratio: 1 / 1" /> -->
-                            <!-- <img src="../image/products/{{p.hinh}}" class="card-img-top" style="aspect-ratio: 1 / 1" /> -->
                         </a>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title" style="height: 3rem;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">
@@ -65,9 +65,7 @@
                             <div class="text-truncate">@item.Description</div>
                             <div class="card-price-star-container mt-5 flex items-center justify-between">
                                 <div class="flex items-center gap-x-2 text-base product-price" data-cy="product-price">
-                                    <!---->
                                     <div class="flex items-center gap-x-2">
-                                        <!---->
                                         <span class="text-danger"><s>discount €</s></span>
                                         <h5 class="mb-1 me-1">@item.Price €</h5>
                                     </div>

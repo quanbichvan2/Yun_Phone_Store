@@ -1,6 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="vn">
+﻿@using QuanBichVanPS28709_ASM.Models.CategoryDto
+@{
+    IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
+}
 
+<!DOCTYPE html>
+<html lang="vn">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -35,27 +39,22 @@
                     <div class="col-md-6">
                         <!-- Adjust the column width as per your requirement -->
                         <div class="d-flex justify-content-end">
-                            <
                             <a href="#"
                                class="btn rounded-pill bg-light text-secondary border-0 shadow-sm hover-text-dark me-2">
                                 <span class="visually-hidden">Notifications</span>
                                 <i class="bi bi-bell-fill" style="color: black;"></i>
                             </a>
-
                             <a href="#"
                                class="btn rounded-pill bg-light text-secondary border-0 shadow-sm hover-text-dark me-2">
                                 <span class="visually-hidden">Favorites</span>
                                 <i class="bi bi-box2-heart" style="color: black;"></i>
                             </a>
-
-                            <a asp-action="Index" asp-controller="Cart"
+                            <a asp-area="Customer" asp-action="Index" asp-controller="Cart"
                                class="btn rounded-pill bg-light text-secondary border-0 shadow-sm hover-text-dark me-2">
                                 <span class="visually-hidden">Cart</span>
                                 <i class="bi bi-cart3" style="color: black;"></i>
                             </a>
                             <partial name="_LoginPartial" />
-                            </ul>
-                            </>
                         </div>
                     </div>
                 </div>
@@ -71,7 +70,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: center;">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" style="color: white;" asp-action="Index" asp-controller="Home">
+                            <a class="nav-link" style="color: white;" asp-area="Customer" asp-action="Index" asp-controller="Home">
                                 <i class="bi bi-house-door-fill">
                                 </i>Home
                             </a>
@@ -82,19 +81,20 @@
                                     Product
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <!-- đang bug đoạn này -->
-                                    <li><a class="dropdown-item" asp-action="Phone" asp-controller="Product"> Phone</a></li>
-                                    <li>
-                                        <a class="dropdown-item" asp-action="Laptop" asp-controller="Product"> Laptop</a>
-                                    </li>
+                                    @{
+                                        foreach (var item in categories)
+                                        {
+                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="Index" asp-controller="Product" asp-route-id="@item.Id"> @item.CategoryName</a></li>
+                                        }
+                                    }
                                 </ul>
                             </li>
                         </ul>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: white;" asp-action="Index" asp-controller="Home"> <i class="bi bi-fire"> </i> On Sales</a>
+                            <a class="nav-link" style="color: white;" asp-area="Customer" asp-action="Index" asp-controller="Home"> <i class="bi bi-fire"> </i> On Sales</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: white;" asp-action="Contact" asp-controller="Home"> <i class="bi bi-envelope-fill"> </i> Contact Us</a>
+                            <a class="nav-link" style="color: white;" asp-area="Customer" asp-action="Contact" asp-controller="Home"> <i class="bi bi-envelope-fill"> </i> Contact Us</a>
                         </li>
                     </ul>
                 </div>

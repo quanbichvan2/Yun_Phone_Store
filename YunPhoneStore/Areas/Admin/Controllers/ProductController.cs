@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using QuanBichVanPS28709_ASM.Areas.Admin.Models;
+using Persistence.Entities;
 using QuanBichVanPS28709_ASM.Models.CategoryDto;
 using QuanBichVanPS28709_ASM.Models.ProductDto;
 using QuanBichVanPS28709_ASM.Services;
-using System.Collections.Generic;
+using QuanBichVanPS28709_ASM.Services.ServiceImp;
 
 namespace QuanBichVanPS28709_ASM.Areas.Admin.Controllers
 {
     [Authorize]
     [Area("admin")]
-
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -24,62 +23,56 @@ namespace QuanBichVanPS28709_ASM.Areas.Admin.Controllers
             _categoryService = categoryService;
         }
         // GET: ProductController
-        public async Task<ActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             FilterProduct filter = new FilterProduct();
             IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(filter);
             return View(products);
         }
 
-        public async Task<ActionResult> ApplicationUser()
-        {
-            return View(User);
-        }
         // GET: ProductController/Details/5
 
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: ProductController/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
+            ViewBag.Categories = categories;
             return View();
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(ProductCreateDto productDto)
         {
-            try
+            Product product = await _productService.CreateProduct(productDto);
+            if (product == null)
             {
-                return RedirectToAction(nameof(Index));
+                return View("Error");
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // POST: ProductController/Edit/5
-        [HttpPost]
+        [HttpPost("/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(Guid id, ProductUpdateDto productDto)
         {
-            try
+            GetProductsToView product = await _productService.UpdateProduct(id, productDto);
+            if (product == null)
             {
-                return RedirectToAction(nameof(Index));
+                return View("Error");
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
         // GET: ProductController/Edit/5
-        [HttpGet]
-        public async Task<ActionResult> Edit(Guid id)
+        [HttpGet("/{id}")]
+        public async Task<IActionResult> Edit(Guid id)
         {
             GetProductsToView product = await _productService.GetProductById(id);
             IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
@@ -93,15 +86,20 @@ namespace QuanBichVanPS28709_ASM.Areas.Admin.Controllers
         }
 
         // GET: ProductController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View();
+            var check = await _productService.DeleteProduct(id);
+            if (!check)
+            {
+                return View("Error");
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {

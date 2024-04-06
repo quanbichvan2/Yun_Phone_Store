@@ -8,59 +8,77 @@
 
 <section>
     <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="@product.Id" />
-                <div class="form-group">
-                    <span asp-validation-for="@product.CategoryName" class="text-danger"></span>
-                    <select asp-for="@product.CategoryName"
-                            asp-items="@(new SelectList(categories, nameof(Category.Id), nameof(Category.CategoryName)))">
-                        <option>Please select one</option>
-                    </select>
+        <div class=" d-flex justify-content-center">
+            <form asp-area="admin" asp-controller="Product" asp-action="Edit" method="post" asp-route-id="@product.Id" class="w-96 mt-1 bg-beige p-6 rounded-lg">
+                <div class="mt-2 flex justify-center ">
+                    <span class="text-blue-500 font-bold"> Edit Products</span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@product.Name" class="control-label"></label>
-                    <input asp-for="@product.Name" class="form-control" />
+               
+                @* <input type="hidden" name="Id" value="@product.Id" /> *@
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Name" class="control-label text-dark bg-light font-bold"> Name: </label>
+                    <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" asp-for="@product.Name" class="form-control" name="Name">
                     <span asp-validation-for="@product.Name" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@product.Memory" class="control-label"></label>
-                    <input asp-for="@product.Memory" class="form-control" />
+
+                <label asp-for="@product.CategoryName" class="control-label text-dark bg-light font-bold"> Category: </label>
+                <select name="CategoryId">
+
+                    <option selected value="0"> @product.CategoryName</option>
+                    @foreach (var item in categories)
+                    {
+                        <option value="@item.Id">@item.CategoryName</option>
+                    }
+                    
+                </select>
+                <div class="mt-4">
+                    <span class="text-red-500 font-bold">Bắt buộc phải nhập, nếu không sẽ gây ra lỗi CategoryID = null</span>
+                </div>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Memory" class="control-label text-dark bg-light font-bold"> Memory: </label>
+                    <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" asp-for="@product.Memory" class="form-control" name="Memory">
                     <span asp-validation-for="@product.Memory" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@product.Color" class="control-label"></label>
-                    <input asp-for="@product.Color" class="form-control" />
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Color" class="control-label text-dark bg-light font-bold"> Color: </label>
+                    <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" asp-for="@product.Color" class="form-control" name="Color">
                     <span asp-validation-for="@product.Color" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@product.Image" class="control-label"></label>
-                    <input asp-for="@product.Image" class="form-control" />
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Image" class="control-label text-dark bg-light font-bold"> Imgage: </label>
+                    <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" asp-for="@product.Image" class="form-control" name="Image" />
                     <span asp-validation-for="@product.Image" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@product.Price" class="control-label"></label>
-                    <input asp-for="@product.Price" class="form-control" />
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Price" class="control-label text-dark bg-light font-bold"> Price: </label>
+                    <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" asp-for="@product.Price" class="form-control" name="Price" />
                     <span asp-validation-for="@product.Price" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@product.Description" class="control-label"></label>
-                    <input asp-for="@product.Description" class="form-control" />
+                <label asp-for="@product.Description" class="control-label text-dark bg-light font-bold" style="margin-top:1rem;"> Description: </label>
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <textarea class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                              placeholder="Message"
+                              rows="8"
+                              id="message" asp-for="@product.Description" class="form-control" name="Description"></textarea>
                     <span asp-validation-for="@product.Description" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                <div class="flex justify-center mt-6">
+                    <input type="submit" value="submit" class="btn btn-primary" style="font-size:1.5rem;"  />
                 </div>
+                <div class="mt-4">
+                    <a asp-area="admin" asp-controller="Product" asp-action="Index" class="block text-center text-primary font-bold hover:text-blue-700 text-xl">Back to List</a>
+                </div>
+
             </form>
         </div>
     </div>
 </section>
 
 
-<div>
-    <a asp-area="admin" asp-controller="Product" asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{

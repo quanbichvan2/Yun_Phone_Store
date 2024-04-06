@@ -59,23 +59,21 @@
                     <p>
                        @Model.Description
                     </p>
-                    <div class="row">
+                    <div class="row mt-8">
                         <div id="autocompleteAddressInput">
-                            <div class="input-wrapper-class relative h-12 rounded-lg border border-dark-25">
-                                <label style="margin-right:9.8rem;">
-                                    Choose Delivery City
-                                </label>
-                                <div class="pointer-events-none absolute inset-y-0 flex items-center px-3 right-0"
-                                     style="display: contents;">
+                            <label class="mr-36">Choose Delivery City</label>
+                            <div class="relative flex items-center h-12 rounded-lg border border-dark-25">
+                                <input id="productPageAddressInput" placeholder="Choose delivery city"
+                                       class="block w-full pl-4 pr-12 text-sm font-medium placeholder-dark/50 bg-input-default bg-opacity-input-default focus:shadow-none sm:text-base"
+                                       type="text" autocomplete="off">
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3">
                                     <i class="bi bi-geo-alt"></i>
                                 </div>
-                                <input id="productPageAddressInput" placeholder="Choose delivery city"
-                                       class="block h-full w-full text-sm font-medium placeholder:!font-medium placeholder:!text-dark/50 focus:!shadow-none sm:text-base text-base bg-input-default bg-opacity-input-default placeholder-dark/50 pl-4 pr-12 text-dark pac-target-input"
-                                       type="text" autocomplete="off">
-                                <div class="absolute inset-y-0 right-2 hidden items-center md:flex mr-8"><!----></div>
                             </div>
+                            <div class="hidden md:flex items-center mr-8"><!----></div>
                         </div>
                     </div>
+
 
                     <hr />
 
@@ -105,12 +103,19 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-warning shadow-0"> Buy Now </a>
-                    <a href="#" class="btn btn-primary shadow-0">
-                        <i class="me-1 fa fa-shopping-basket"></i> Add to cart
-                    </a>
-                    <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"
-                       style="background-color: rgb(248, 207, 213);"> <i class="me-1 fa fa-heart fa-lg"></i> Wishlist </a>
+                    <div class="flex items-center ">
+                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded shadow">Buy Now</a>
+                        <form asp-area="customer" asp-controller="Cart" asp-action="AddToCart" method="post" class="mx-4">
+                            <input type="hidden" value="@Model.Id" name="ProductId" />
+                            <input type="hidden" value="@Model.Name" name="ProductName" />
+                            <input type="hidden" value="@Model.Price" name="Price" />
+                            <input type="hidden" value="@Model.Image" name="Image" />
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow">Add to Cart</button>
+                        </form>
+                        <a href="#" class="bg-gray-200 border border-gray-400 py-2 px-4 rounded">
+                            <i class="fas fa-heart text-red-500 mr-1"></i> Wishlist
+                        </a>
+                    </div>
                 </div>
             </main>
         </div>
@@ -195,7 +200,37 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Similiar Items</h5>
-                            <div class="d-flex mb-3" ng-repeat="p in products | limitTo:4">
+                            <div class="d-flex mb-3">
+                                <a class="col-4" asp-action="Detail" asp-controller="Product" class="me-3">
+                                    <img src="@Model.Image"
+                                         style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                </a>
+                                <div class="info col-8 m-3">
+                                    <a class="" asp-action="Detail" asp-controller="Product" class="nav-link mb-1">
+                                        <h4> @Model.Name </h4>
+                                    </a>
+                                    <strong class="text-dark"> @Model.Price €</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Similiar Items</h5>
+                            <div class="d-flex mb-3">
+                                <a class="col-4" asp-action="Detail" asp-controller="Product" class="me-3">
+                                    <img src="@Model.Image"
+                                         style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                </a>
+                                <div class="info col-8 m-3">
+                                    <a class="" asp-action="Detail" asp-controller="Product" class="nav-link mb-1">
+                                        <h4> @Model.Name </h4>
+                                    </a>
+                                    <strong class="text-dark"> @Model.Price €</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Similiar Items</h5>
+                            <div class="d-flex mb-3">
                                 <a class="col-4" asp-action="Detail" asp-controller="Product" class="me-3">
                                     <img src="@Model.Image"
                                          style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />

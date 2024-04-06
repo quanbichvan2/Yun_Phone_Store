@@ -1,22 +1,21 @@
 ﻿using Persistence.Entities;
 using QuanBichVanPS28709_ASM.Models;
-using QuanBichVanPS28709_ASM.Models.ProductDto;
+using QuanBichVanPS28709_ASM.Models.CategoryDto;
 
 namespace QuanBichVanPS28709_ASM.Services
 {
-    public interface IProductService
+    public interface ICategoryService
     {
         // task là xử lý bất đồng bộ
-        Task<Product> CreateProduct(Product product);
+        Task<Category> CreateCategory(Category category);
 
-        Task<GetProductsToView> UpdateProduct(Guid ProductId, ProductUpdateDto productDto);
+        //Task<GetCategoryToView> UpdateCategory(Guid CategoryId, CategoryUpdateDto categoryDto);
 
-        Task<bool> DeleteProduct(Guid ProductId);
+        Task<bool> DeleteCategory(Guid CategoryId);
 
-        Task<GetProductsToView> GetProductById(Guid ProductId);
+        Task<GetCategoryToView> GetCategoryById(Guid CategoryId);
 
-        Task<IEnumerable<GetProductsToView>> GetAllProducts(Filter? filter); // dùng IEnumerable dùng để đọc foreach
+        Task<IEnumerable<GetCategoryToView>> GetAllCategories(); // dùng IEnumerable dùng để đọc foreach
                                                                              // phần xử lý là laptop hay phone
-        Task<IEnumerable<GetProductsToView>> GetAllProductsByCategoryId(FilterProduct filter);
     }
 }

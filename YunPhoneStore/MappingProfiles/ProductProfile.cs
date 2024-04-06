@@ -18,6 +18,7 @@ namespace QuanBichVanPS28709_ASM.MappingProfiles
             dest => dest.CategoryName,
             opt => opt.MapFrom(src => src.Category.CategoryName));
             CreateMap<Product, ProductUpdateDto>().ReverseMap();
+            CreateMap<ProductCreateDto, Product>().ReverseMap();
         }
     }
 }

@@ -2,42 +2,46 @@
 using QuanBichVanPS28709_ASM.Models.ProductDto;
 using QuanBichVanPS28709_ASM.Models;
 using QuanBichVanPS28709_ASM.Services;
+using Persistence.Entities;
+using QuanBichVanPS28709_ASM.Models.CategoryDto;
+using QuanBichVanPS28709_ASM.Services.ServiceImp;
 
 namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
 {
-    //[Route("[controller]")]
     [Area("Customer")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
         private readonly ILogger<HomeController> _logger;
 
-        public ProductController(IProductService productService, ILogger<HomeController> logger)
+        public ProductController(IProductService productService, ILogger<HomeController> logger, ICategoryService categoryService)
         {
             _productService = productService;
             _logger = logger;
+            _categoryService = categoryService;
         }
 
-        [Route("{Id}")]
-        public async Task<IActionResult> Detail(Guid Id)
-        {
-            GetProductsToView products = await _productService.GetProductById(Id);
-            return View(products);
-        }
-
-        public async Task<IActionResult> Laptop()
+        // Response view product detail
+        [HttpGet("/product/category/{id}")]
+        public async Task<IActionResult> Index(Guid id)
         {
             FilterProduct filter = new FilterProduct();
-            filter.CategoryId = new Guid("d0bf42cba77945b78e93429944023ee9");
+            filter.CategoryId = id;
             IEnumerable<GetProductsToView> products = await _productService.GetAllProductsByCategoryId(filter);
-            return View(products);
+            IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
+            ViewBag.Products = products;
+            ViewBag.Categories = categories;
+            return View();
         }
 
-        public async Task<IActionResult> Phone() // đặt tên web trên Folder Product sao thì đây cũng phải same
+        // Response view product detail
+        [HttpGet("product/{id}")]
+        public async Task<IActionResult> Detail(Guid id)
         {
-            FilterProduct filter = new FilterProduct();
-            filter.CategoryId = new Guid("6ef6e3f6af5c4426acc783efe00051d4");
-            IEnumerable<GetProductsToView> products = await _productService.GetAllProductsByCategoryId(filter);
+            GetProductsToView products = await _productService.GetProductById(id);
+            IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
+            ViewBag.Categories = categories;
             return View(products);
         }
     }

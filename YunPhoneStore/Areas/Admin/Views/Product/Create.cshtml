@@ -1,1 +1,82 @@
-﻿
+﻿@using Persistence.Entities
+@using QuanBichVanPS28709_ASM.Models.CategoryDto
+@using QuanBichVanPS28709_ASM.Models.ProductDto
+@{
+    Product product = new Product();
+    IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
+}
+
+<section>
+    <div class="row">
+        <div class=" d-flex justify-content-center">
+            @using (Html.BeginForm("Create", "Product", FormMethod.Post))
+            {
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Name" class="control-label text-dark bg-light font-bold"> Name: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Name">
+                    <span asp-validation-for="@product.Name" class="text-danger"></span>
+                </div>
+
+                <select name="CategoryId">
+                    <option selected value="0">---Select---</option>
+                    @foreach (var item in categories)
+                    {
+                    <option value="@item.Id">@item.CategoryName</option>
+                    }
+
+                </select>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Memory" class="control-label text-dark bg-light font-bold"> Memory: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Memory">
+                    <span asp-validation-for="@product.Memory" class="text-danger"></span>
+                </div>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Color" class="control-label text-dark bg-light font-bold"> Color: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Color">
+                    <span asp-validation-for="@product.Color" class="text-danger"></span>
+                </div>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Image" class="control-label text-dark bg-light font-bold"> Image: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Image">
+                    <span asp-validation-for="@product.Image" class="text-danger"></span>
+                </div>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Price" class="control-label text-dark bg-light font-bold"> Price: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Price">
+                    <span asp-validation-for="@product.Price" class="text-danger"></span>
+                </div>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Stock" class="control-label text-dark bg-light font-bold"> Stock: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Stock">
+                    <span asp-validation-for="@product.Stock" class="text-danger"></span>
+                </div>
+
+                <div class="flex items-center border-b border-teal-500 py-2">
+                    <label asp-for="@product.Description" class="control-label text-dark bg-light font-bold"> Description: </label>
+                    <input class="form-control appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="Description">
+                    <span asp-validation-for="@product.Description" class="text-danger"></span>
+                </div>
+                <div class="flex items-center justify-content-center" style="margin-top:1rem;">
+                    <input type="submit" value="Submit" class="btn btn-primary" style="font-size:1.5rem;">
+                </div>
+            }
+            <form asp-area="admin" asp-controller="Product" asp-action="Create" method="post">
+            </form>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
