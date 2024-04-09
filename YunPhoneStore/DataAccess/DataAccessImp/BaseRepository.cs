@@ -28,15 +28,25 @@ namespace QuanBichVanPS28709_ASM.DataAccess.DataAccessImp
             return true;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllEntities(Filter? filter)
-        {
-            return null;
-        }
+        //public async Task<IEnumerable<TEntity>> GetAllEntities(Filter? filter)
+        //{
+        //    return null;
+        //}
+
+        //public Task<IEnumerable<TEntity>> GetAllEntities(Models.Filter filter)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<TEntity> GetEntityById(Guid id)
         {
             // return await _context.FindFindAsync(id);
             return null;
+        }
+
+        public Task<Filter<TEntity>> GetListPagination(IQueryable<TEntity> query, int page, int pageSize)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<TEntity> UpdateEntity(TEntity entity)

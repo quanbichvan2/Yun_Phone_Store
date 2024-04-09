@@ -32,9 +32,14 @@
             <span style="color: white;">yun store</span>
 
             <div class="flex flex-1 items-center justify-end md:justify-between">
-                <div class="form-control" style="margin-left: 2rem;">
-                    <input type="text" placeholder="search" class="input input-bordered w-24 md:w-auto" />
-                </div>
+                <form asp-area="customer" asp-controller="Product" asp-action="SearchProduct" method="get">
+                    <div class="flex items-center border rounded overflow-hidden">
+                        <input type="text" name="ProductName" placeholder="Search" value="" class="py-2 px-4 border-none bg-transparent text-white" />
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
                 <div class="col-md-4">
                     <!-- adjust the column width as per your requirement -->
                     <div class="d-flex justify-content-end">
@@ -82,7 +87,7 @@
                                     {
                                         foreach (var item in categories)
                                         {
-                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="Index" asp-controller="Product" asp-route-id="@item.Id"> @item.CategoryName</a></li>
+                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="GetAllProductsByCategory" asp-controller="Product" asp-route-id="@item.Id"> @item.CategoryName</a></li>
                                         }
                                     }
                                 </ul>

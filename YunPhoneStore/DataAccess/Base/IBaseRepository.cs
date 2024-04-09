@@ -1,4 +1,5 @@
-﻿using QuanBichVanPS28709_ASM.Models;
+﻿using Persistence.Entities;
+using QuanBichVanPS28709_ASM.Models;
 
 namespace QuanBichVanPS28709_ASM.DataAccess.Base
 {
@@ -12,6 +13,8 @@ namespace QuanBichVanPS28709_ASM.DataAccess.Base
 
         Task<TEntity> GetEntityById(Guid id);
 
-        Task<IEnumerable<TEntity>> GetAllEntities(Filter filter);
+        //Task<IEnumerable<TEntity>> GetAllEntities(Filter filter);
+
+        Task<Filter<TEntity>> GetListPagination(IQueryable<TEntity> query, int page, int pageSize);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 using Persistence.Entities;
 using QuanBichVanPS28709_ASM.Models;
@@ -26,20 +27,45 @@ namespace QuanBichVanPS28709_ASM.DataAccess.DataAccessImp
             return await DeleteEntity(product);
         }
 
-        public async Task<IEnumerable<Product>> GetAllProducts(Filter? filter)
+        public async Task<IEnumerable<Product>> GetAllProducts(FilterProduct? filter)
         {
-            return await _context.Products.Skip((filter.CurrentPage - 1) * filter.PageSize).Take(filter.PageSize).Include(p => p.Category).ToListAsync();
-        }
 
+            var demo = await GetListPagination(_context.Products
+                    .Where(p => p.Name.Contains(filter.ProductName))
+                    .Include(p => p.Category)
+                    ,1,10);
+            return demo.Data;
+        }
         public async Task<IEnumerable<Product>> GetAllProductsByCategoryId(FilterProduct filter)
         {
-            return await _context.Products.Where(p => p.CategoryId == filter.CategoryId).Skip(filter.CurrentPage - 1).Take(filter.PageSize).Include(p=>p.Category).ToListAsync();
+            return await _context.Products.Where(p => p.CategoryId == filter.CategoryId)/*.Skip(filter.CurrentPage - 1).Take(filter.PageSize)*/.Include(p => p.Category).ToListAsync();
+        }
+
+        public async Task<Filter<Product>> GetListPagination(IQueryable<Product> query, int page, int pageSize)
+        {
+            //_context.Products
+            query = query.Skip((page - 1) * pageSize)
+                      .Take(pageSize);
+            var result = await query.ToListAsync();
+            var pagination = new Filter<Product>()
+            {
+                Data = result,
+                pageInfo = new PageInfo()
+                {
+                    CurrentPage = page,
+                    PageSize = pageSize,
+                    TotalItem = result.Count
+                }
+            };
+            return pagination;
         }
 
         public async Task<Product> GetProductById(Guid ProductId)
         {
             return await _context.Products.Where(p => p.Id == ProductId).Include(c => c.Category).FirstOrDefaultAsync();
         }
+
+       
 
         public async Task<Product> UpdateProduct(Product product)
         {

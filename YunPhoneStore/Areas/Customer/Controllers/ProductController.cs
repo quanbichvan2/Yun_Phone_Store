@@ -5,6 +5,9 @@ using QuanBichVanPS28709_ASM.Services;
 using Persistence.Entities;
 using QuanBichVanPS28709_ASM.Models.CategoryDto;
 using QuanBichVanPS28709_ASM.Services.ServiceImp;
+using Microsoft.IdentityModel.Tokens;
+using System.Linq;
+using System.Text.Json;
 
 namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
 {
@@ -22,19 +25,38 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
             _categoryService = categoryService;
         }
 
-        // Response view product detail
+        public async Task<IActionResult> Index()
+        {
+            IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
+            ViewBag.Categories = categories;
+            ViewBag.Products = JsonSerializer.Deserialize<IEnumerable<GetProductsToView>>(TempData["Products"]?.ToString());
+            return View();
+        }
+
         [HttpGet("/product/category/{id}")]
-        public async Task<IActionResult> Index(Guid id)
+        public async Task<IActionResult> GetAllProductsByCategory(Guid id)
         {
             FilterProduct filter = new FilterProduct();
             filter.CategoryId = id;
             IEnumerable<GetProductsToView> products = await _productService.GetAllProductsByCategoryId(filter);
-            IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
-            ViewBag.Products = products;
-            ViewBag.Categories = categories;
-            return View();
+            TempData["Products"] = JsonSerializer.Serialize(products);
+            
+            return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> SearchProduct(FilterProduct filter)
+        {
+            IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(filter);
+            TempData["Products"] = JsonSerializer.Serialize(products);
+
+            return RedirectToAction("Index");
+        }
+      /*  [HttpGet]
+        public async Task<IActionResult> Pagination(Filter filter)
+        {
+            
+        }*/
         // Response view product detail
         [HttpGet("product/{id}")]
         public async Task<IActionResult> Detail(Guid id)

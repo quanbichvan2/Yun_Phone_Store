@@ -23,7 +23,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Admin.Controllers
             _categoryService = categoryService;
         }
         // GET: ProductController
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ProductName)
         {
             FilterProduct filter = new FilterProduct();
             IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(filter);

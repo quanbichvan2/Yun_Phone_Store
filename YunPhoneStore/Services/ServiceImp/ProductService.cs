@@ -47,12 +47,13 @@ namespace QuanBichVanPS28709_ASM.Services.ServiceImp
             return true;
         }
 
-        public async Task<IEnumerable<GetProductsToView>> GetAllProducts(Filter? filter) // filter dùng để phân trang
+        public async Task<IEnumerable<GetProductsToView>> GetAllProducts(FilterProduct? filter) // filter dùng để phân trang
         {
             try
             {
                 IEnumerable<Product> product = await _productRepo.GetAllProducts(filter);
                 IEnumerable<GetProductsToView> res = _mapper.Map<IEnumerable<GetProductsToView>>(product);
+
                 return res;
             }
             catch (Exception ex)
