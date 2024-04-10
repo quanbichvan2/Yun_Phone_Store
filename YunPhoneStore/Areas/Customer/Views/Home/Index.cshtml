@@ -1,8 +1,7 @@
 ﻿@using QuanBichVanPS28709_ASM.Models.CategoryDto
 @using QuanBichVanPS28709_ASM.Models.ProductDto
-@model IEnumerable<GetProductsToView>
 @{
-    IEnumerable<GetProductsToView> products = ViewBag.Products;
+    Filter<GetProductsToView> products = ViewBag.Products;
     IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
     ViewData["Title"] = "Home Page";
 }
@@ -51,7 +50,7 @@
         <div class="row">
             <!-- sp moi -->
             <!-- TODO thêm ng-repeat vào đây-->
-            @foreach (var item in products)
+            @foreach (var item in products.Data)
             {
                 <div class="col-lg-3 col-md-6 col-sm-6 d-flex" ng-repeat="p in products| limitTo: 8">
                     <div class="card w-100 my-2 shadow-2-strong p-2">

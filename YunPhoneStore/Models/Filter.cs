@@ -8,9 +8,15 @@
 
     public class PageInfo
     {
-        public int TotalItem {  get; set; }
-        public int CurrentPage { get; set; } = 1;
-        public int PageSize { get; set; } = 10; // 1 trang có 10 sản phẩm
+        public PageInfo()
+        {
+            PageSize = 10;
+            CurrentPage = 1;
+
+        }
+        public int TotalItem { get; set; }
+        public int CurrentPage { get; set; }
+        public int PageSize { get; set; } // 1 trang có 10 sản phẩm
 
     }
 }

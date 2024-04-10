@@ -42,27 +42,27 @@
                         </button>
                     </div>
                 </form>
-               @*   <form asp-action="Index" asp-controller="Product">
-                     <div class="input-group">
-                         <input name="searchString"
-                                type="search"
-                                aria-label="Search"
-                                class="form-control border-end-0"
-                                placeholder="Tìm kiếm sản phẩm"
-                                list="items" />
-                         <datalist id="items">
-                             <option>iPhone</option>
-                             <option>iPad</option>
-                             <option>Laptop</option>
-                             <option>Phụ kiện</option>
-                         </datalist>
-                         <button class="btn btn-outline-secondary bg-white border-start-0"
-                                 type="submit"
-                                 id="searchButton">
-                             <i class="fa fa-search"></i>
-                         </button>
-                     </div>
-                 </form> *@
+                @*   <form asp-action="Index" asp-controller="Product">
+                <div class="input-group">
+                <input name="searchString"
+                type="search"
+                aria-label="Search"
+                class="form-control border-end-0"
+                placeholder="Tìm kiếm sản phẩm"
+                list="items" />
+                <datalist id="items">
+                <option>iPhone</option>
+                <option>iPad</option>
+                <option>Laptop</option>
+                <option>Phụ kiện</option>
+                </datalist>
+                <button class="btn btn-outline-secondary bg-white border-start-0"
+                type="submit"
+                id="searchButton">
+                <i class="fa fa-search"></i>
+                </button>
+                </div>
+                </form> *@
                 <div class="col-md-4">
                     <!-- adjust the column width as per your requirement -->
                     <div class="d-flex justify-content-end">
@@ -110,7 +110,7 @@
                                     {
                                         foreach (var item in categories)
                                         {
-                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="GetAllProductsByCategory" asp-controller="Product" asp-route-id="@item.Id"> @item.CategoryName</a></li>
+                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="GetAllProductsByCategory" asp-controller="Product" asp-route-id="@item.Id" asp-route-currentPage="1"> @item.CategoryName</a></li>
                                         }
                                     }
                                 </ul>

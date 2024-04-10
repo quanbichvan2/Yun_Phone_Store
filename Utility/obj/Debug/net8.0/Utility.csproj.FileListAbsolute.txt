@@ -11,3 +11,16 @@ E:\FPT\C#4\NET104\Asm\ASM\Utility\obj\Debug\net8.0\Utility.dll
 E:\FPT\C#4\NET104\Asm\ASM\Utility\obj\Debug\net8.0\refint\Utility.dll
 E:\FPT\C#4\NET104\Asm\ASM\Utility\obj\Debug\net8.0\Utility.pdb
 E:\FPT\C#4\NET104\Asm\ASM\Utility\obj\Debug\net8.0\ref\Utility.dll
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\bin\Debug\net8.0\Utility.deps.json
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\bin\Debug\net8.0\Utility.dll
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\bin\Debug\net8.0\Utility.pdb
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.csproj.AssemblyReference.cache
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.GeneratedMSBuildEditorConfig.editorconfig
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.AssemblyInfoInputs.cache
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.AssemblyInfo.cs
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.csproj.CoreCompileInputs.cache
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.sourcelink.json
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.dll
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\refint\Utility.dll
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\Utility.pdb
+E:\FPT\C#4\NET104\Asm\QuanBichVan_PS28709_ASM\Utility\obj\Debug\net8.0\ref\Utility.dll

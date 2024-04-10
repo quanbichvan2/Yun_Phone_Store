@@ -2,9 +2,10 @@
 @using QuanBichVanPS28709_ASM.Models.ProductDto
 @{
     ViewData["Title"] = "Product Page";
-    IEnumerable<GetProductsToView> products = ViewBag.Products;
+    Filter<GetProductsToView> products = ViewBag.Products;
     IEnumerable<GetCategoryToView> categories = ViewBag.Categories;
-    
+    Guid categoryGuid = ViewBag.CategoryGuid;
+
 }
 
 <!-- phần ảnh giữa -->
@@ -35,8 +36,8 @@
                     <li class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
                         Brand
                     </li>
-                    @if (products.Any() && products?.FirstOrDefault(p => p.CategoryName == categories?.First().CategoryName) != null) // trong code nên dùng ? trước khi sử dụng 1 method của 1 list hoặc property
-                    // check xem thuộc tính có null hay không để được quyền đi tới, không thì stop luôn. Hạn chế gây bug crash
+                    @if (products.Data.Any() && products?.Data.FirstOrDefault(p => p.CategoryName == categories?.First().CategoryName) != null) // trong code nên dùng ? trước khi sử dụng 1 method của 1 list hoặc property
+                                                                                                                                               // check xem thuộc tính có null hay không để được quyền đi tới, không thì stop luôn. Hạn chế gây bug crash
                     {
                         <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
                             <div class="flex items-center">
@@ -66,36 +67,36 @@
                             </div>
                         </label>
                     }
-                        @if (products.Any() && products?.FirstOrDefault(p => p.CategoryName == categories?.ElementAt(1).CategoryName) != null)
-                        {
-                            <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
-                                <div class="flex items-center">
-                                    &#8203;
-                                    <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
-                                </div>
-                                <div>
-                                    <strong class="font-medium text-gray-900"> Apple </strong>
-                                </div>
-                            </label>
-                            <label for="Option2" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
-                                <div class="flex items-center">
-                                    &#8203;
-                                    <input type="checkbox" class="size-4 rounded border-gray-300" id="Option2" />
-                                </div>
-                                <div>
-                                    <strong class="font-medium text-gray-900"> Samsung </strong>
-                                </div>
-                            </label>
-                            <label for="Option3" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
-                                <div class="flex items-center">
-                                    &#8203;
-                                    <input type="checkbox" class="size-4 rounded border-gray-300" id="Option3" />
-                                </div>
-                                <div>
-                                    <strong class="font-medium text-gray-900"> Oppo </strong>
-                                </div>
-                            </label>
-                        }
+                    @if (products.Data.Any() && products?.Data.FirstOrDefault(p => p.CategoryName == categories?.ElementAt(1).CategoryName) != null)
+                    {
+                        <label for="Option1" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Apple </strong>
+                            </div>
+                        </label>
+                        <label for="Option2" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option2" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Samsung </strong>
+                            </div>
+                        </label>
+                        <label for="Option3" class="flex cursor-pointer items-start gap-4" style="margin-left:3rem;margin-top:0.5rem;">
+                            <div class="flex items-center">
+                                &#8203;
+                                <input type="checkbox" class="size-4 rounded border-gray-300" id="Option3" />
+                            </div>
+                            <div>
+                                <strong class="font-medium text-gray-900"> Oppo </strong>
+                            </div>
+                        </label>
+                    }
                     <li>
                         <details class="group [&_summary::-webkit-details-marker]:hidden">
                             <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
@@ -280,7 +281,7 @@
                      ng-repeat="p in displayedProducts | limitTo: (currentPage - 1) * itemsPerPage + itemsPerPage">
                     <div class="col-md-12">
                         <!-- sp mới -->
-                        @foreach (var item in products)
+                        @foreach (var item in products.Data)
                         {
                             <div class="card shadow-0 border rounded-3">
                                 <div class="card-body">
@@ -335,31 +336,44 @@
                 </div>
                 <!-- Pagination -->
                 <div class="d-flex inline-flex items-center justify-center gap-3" style="margin-top:1rem;">
-                    <a href="#"
-                       class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
-                        <span class="sr-only">Next Page</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                  clip-rule="evenodd" />
-                        </svg>
-                    </a>
+                    @if (
+                    products.pageInfo.CurrentPage >= 1
+                    )
+                    {
+                        <a asp-action="GetAllProductsByCategory" asp-controller="Product" asp-route-id="@categoryGuid" asp-route-currentPage="@(products.pageInfo.CurrentPage -1)"
+                           class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+                            <span class="sr-only">Prev Page</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                      clip-rule="evenodd" />
+                            </svg>
+                        </a>
+
+                    }
 
                     <p class="text-xs text-gray-900">
-                        1
+                        @products.pageInfo.CurrentPage
                         <span class="mx-0.25">/</span>
-                        12
+                        @{
+                            var totalPage = (int)Math.Ceiling((double)products.pageInfo.TotalItem / products.pageInfo.PageSize);
+                        }
+                        @totalPage
                     </p>
 
-                    <a href="#"
-                       class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
-                        <span class="sr-only">Next Page</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                  clip-rule="evenodd" />
-                        </svg>
-                    </a>
+                    @if (products.pageInfo.CurrentPage < totalPage)
+                    {
+                        <a asp-action="GetAllProductsByCategory" asp-controller="Product" asp-route-id="@categoryGuid" asp-route-currentPage="@(products.pageInfo.CurrentPage+1 )"
+                           class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+                            <span class="sr-only">Next Page</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                      clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    }
+
                 </div>
                 @*  <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3 col-12">
                 <ul class="pagination">

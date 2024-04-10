@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Entities;
+using QuanBichVanPS28709_ASM.Models;
 using QuanBichVanPS28709_ASM.Models.CategoryDto;
 using QuanBichVanPS28709_ASM.Models.ProductDto;
 using QuanBichVanPS28709_ASM.Services;
@@ -25,8 +26,13 @@ namespace QuanBichVanPS28709_ASM.Areas.Admin.Controllers
         // GET: ProductController
         public async Task<IActionResult> Index(string ProductName)
         {
-            FilterProduct filter = new FilterProduct();
-            IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(filter);
+            FilterProduct filter = new()
+            {
+                pageSize = int.MaxValue,
+                page = 1,
+                ProductName = ProductName
+            };
+            Filter<GetProductsToView> products = await _productService.GetAllProducts(filter);
             return View(products);
         }
 
