@@ -1060,11 +1060,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\Utility\\Utility.csproj",
+      "projectUniqueName": "E:\\FPT\\C#4\\QuanBichVan_PS28709_ASM\\Utility\\Utility.csproj",
       "projectName": "Utility",
-      "projectPath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\Utility\\Utility.csproj",
+      "projectPath": "E:\\FPT\\C#4\\QuanBichVan_PS28709_ASM\\Utility\\Utility.csproj",
       "packagesPath": "C:\\Users\\Yun PC\\.nuget\\packages\\",
-      "outputPath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\Utility\\obj\\",
+      "outputPath": "E:\\FPT\\C#4\\QuanBichVan_PS28709_ASM\\Utility\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1131,7 +1131,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

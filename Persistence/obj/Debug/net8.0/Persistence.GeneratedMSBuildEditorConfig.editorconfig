@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Persistence
-build_property.ProjectDir = E:\FPT\C#4\NET104\Asm\ASM\Persistence\
+build_property.ProjectDir = E:\FPT\C#4\QuanBichVan_PS28709_ASM\Persistence\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

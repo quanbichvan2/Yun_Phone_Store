@@ -47,33 +47,53 @@ namespace QuanBichVanPS28709_ASM.Services.ServiceImp
             return true;
         }
 
-        public async Task<IEnumerable<GetProductsToView>> GetAllProducts(Filter? filter) // filter dùng để phân trang
+        public async Task<Filter<GetProductsToView>> GetAllProducts(FilterProduct filter) // filter dùng để phân trang
         {
             try
             {
-                IEnumerable<Product> product = await _productRepo.GetAllProducts(filter);
-                IEnumerable<GetProductsToView> res = _mapper.Map<IEnumerable<GetProductsToView>>(product);
+                Filter<Product> products = await _productRepo.GetAllProducts(filter);
+
+                var res = new Filter<GetProductsToView>
+                {
+                    Data = _mapper.Map<List<GetProductsToView>>(products.Data),
+                    pageInfo = products.pageInfo // Copy PageInfo từ Filter<Product> sang Filter<GetProductsToView>
+                };
+
                 return res;
             }
             catch (Exception ex)
             {
-                return null;
+                return new()
+                {
+                    Data = []
+                };
             }
         }
 
-        public async Task<IEnumerable<GetProductsToView>> GetAllProductsByCategoryId(FilterProduct filter)
-        {
-            try
-            {
-                IEnumerable<Product> product = await _productRepo.GetAllProductsByCategoryId(filter);
-                IEnumerable<GetProductsToView> res = _mapper.Map<IEnumerable<GetProductsToView>>(product);
-                return res;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+
+
+        //public async Task<Filter<GetProductsToView>> GetAllProductsByCategoryId(FilterProduct filter)
+        //{
+        //    try
+        //    {
+
+        //        Filter<Product> products = await _productRepo.GetAllProducts(filter);
+               
+        //        var res = new Filter<GetProductsToView>
+        //        {
+        //            Data = _mapper.Map<List<GetProductsToView>>(products.Data),
+        //            pageInfo = products.pageInfo // Copy PageInfo từ Filter<Product> sang Filter<GetProductsToView>
+        //        };
+        //        return res;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new()
+        //        {
+        //            Data = []
+        //        };
+        //    }
+        //}
 
         public async Task<GetProductsToView> GetProductById(Guid ProductId)
         {
@@ -94,7 +114,7 @@ namespace QuanBichVanPS28709_ASM.Services.ServiceImp
             try
             {
                 Product product = await _productRepo.GetProductById(ProductId);
-                if(product != null)
+                if (product != null)
                 {
                     //product = _mapper.Map<Product>(productDto);
                     product.Name = productDto.Name;
@@ -105,7 +125,7 @@ namespace QuanBichVanPS28709_ASM.Services.ServiceImp
                     product.Price = productDto.Price;
                     product.Image = productDto.Image;
                     Product res = await _productRepo.UpdateProduct(product);
-                    if(res != null)
+                    if (res != null)
                     {
                         GetProductsToView productsToView = _mapper.Map<GetProductsToView>(res);
                         return productsToView;

@@ -23,8 +23,8 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            Filter pagination = new Filter();
-            IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(pagination);
+            FilterProduct pagination = new();
+            Filter<GetProductsToView> products = await _productService.GetAllProducts(pagination);
             IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
             ViewBag.Products = products;
             ViewBag.Categories = categories;

@@ -15,8 +15,9 @@ namespace QuanBichVanPS28709_ASM.Services
 
         Task<GetProductsToView> GetProductById(Guid ProductId);
 
-        Task<IEnumerable<GetProductsToView>> GetAllProducts(Filter? filter); // dùng IEnumerable dùng để đọc foreach
+        Task<Filter<GetProductsToView>> GetAllProducts(FilterProduct filter); // dùng IEnumerable dùng để đọc foreach
                                                                              // phần xử lý là laptop hay phone
-        Task<IEnumerable<GetProductsToView>> GetAllProductsByCategoryId(FilterProduct filter);
+        //Task<Filter<GetProductsToView>> GetAllProductsByCategoryId(FilterProduct filter);
+
     }
 }

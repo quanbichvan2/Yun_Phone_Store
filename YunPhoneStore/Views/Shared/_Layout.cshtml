@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -29,12 +31,38 @@
                           fill="currentColor" />
                 </svg>
             </a>
-            <span style="color: white;">yun store</span>
+            <span style="color: white;font-size:2rem;">Yun Store</span>
 
             <div class="flex flex-1 items-center justify-end md:justify-between">
-                <div class="form-control" style="margin-left: 2rem;">
-                    <input type="text" placeholder="search" class="input input-bordered w-24 md:w-auto" />
+                <form asp-area="customer" asp-controller="Product" asp-action="SearchProduct" method="get">
+                    <div class="flex items-center border rounded overflow-hidden">
+                        <input type="text" name="ProductName" placeholder="Search" value="" class="py-2 px-4 border-none bg-transparent" />
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                @*   <form asp-action="Index" asp-controller="Product">
+                <div class="input-group">
+                <input name="searchString"
+                type="search"
+                aria-label="Search"
+                class="form-control border-end-0"
+                placeholder="Tìm kiếm sản phẩm"
+                list="items" />
+                <datalist id="items">
+                <option>iPhone</option>
+                <option>iPad</option>
+                <option>Laptop</option>
+                <option>Phụ kiện</option>
+                </datalist>
+                <button class="btn btn-outline-secondary bg-white border-start-0"
+                type="submit"
+                id="searchButton">
+                <i class="fa fa-search"></i>
+                </button>
                 </div>
+                </form> *@
                 <div class="col-md-4">
                     <!-- adjust the column width as per your requirement -->
                     <div class="d-flex justify-content-end">
@@ -82,7 +110,7 @@
                                     {
                                         foreach (var item in categories)
                                         {
-                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="Index" asp-controller="Product" asp-route-id="@item.Id"> @item.CategoryName</a></li>
+                                            <li><a class="dropdown-item" asp-area="Customer" asp-action="GetAllProductsByCategory" asp-controller="Product" asp-route-id="@item.Id" asp-route-currentPage=1> @item.CategoryName</a></li>
                                         }
                                     }
                                 </ul>

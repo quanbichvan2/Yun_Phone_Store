@@ -15,8 +15,9 @@ namespace QuanBichVanPS28709_ASM.DataAccess
 
         Task<Product> GetProductById(Guid ProductId);
 
-        Task<IEnumerable<Product>> GetAllProducts(Filter? filter);
-        Task<IEnumerable<Product>> GetAllProductsByCategoryId(FilterProduct filter);
+        Task<Filter<Product>> GetAllProducts(FilterProduct filter);
+        //Task<Filter<Product>> GetAllProductsByCategoryId(FilterProduct filter);
+        Task<Filter<Product>> GetListPagination(IQueryable<Product> query,int page, int pageSize);
         //
     }
 }
