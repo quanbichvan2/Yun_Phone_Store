@@ -13,7 +13,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
     [Area("Customer")]
     public class CartController : Controller
     {
-        
+
         private readonly ICartService _cartService;
         private readonly ICategoryService _categoryService;
         public CartController(ICartService cartService, ICategoryService categoryService)
@@ -21,19 +21,28 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
             _cartService = cartService;
             _categoryService = categoryService;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             string value = HttpContext.Session.GetString(Constant.CART_SESSION_KEY);
+            CartDto cartInSession;
             if (value != null)
             {
-                CartDto cartInSession = JsonSerializer.Deserialize<CartDto>(value)!;
-                ViewBag.Cart = cartInSession;
+                cartInSession = JsonSerializer.Deserialize<CartDto>(value)!;
+
             }
+            else
+            {
+                cartInSession = new()
+                {
+                    cartItemDto = []
+                };
+            }
+            ViewBag.Cart = cartInSession;
             IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
             ViewBag.Categories = categories;
-            
+
             return View();
         }
 
@@ -41,7 +50,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
         public async Task<IActionResult> AddToCart(CartItemDto cartItemDto)
         {
             string value = HttpContext.Session.GetString(Constant.CART_SESSION_KEY);
-            
+
             if (value == null) //nếu session không tồn tại
             {
                 //tạo session
@@ -76,7 +85,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
                     HttpContext.Session.SetString(Constant.CART_SESSION_KEY, JsonSerializer.Serialize(cartInSession));
                 }
             }
-            
+
             return RedirectToAction("Index");
         }
 
@@ -136,7 +145,7 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
                 HttpContext.Session.Remove(Constant.CART_SESSION_KEY);
                 await _cartService.Checkout(cartInSession);
             }
-            
+
             return RedirectToAction("Index");
         }
     }

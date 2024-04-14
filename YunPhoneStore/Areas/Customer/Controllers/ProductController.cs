@@ -24,39 +24,46 @@ namespace QuanBichVanPS28709_ASM.Areas.Customer.Controllers
             _logger = logger;
             _categoryService = categoryService;
         }
-
+        //Product/{categories}
         public async Task<IActionResult> Index()
         {
             IEnumerable<GetCategoryToView> categories = await _categoryService.GetAllCategories();
             ViewBag.Categories = categories;
-            ViewBag.Products = JsonSerializer.Deserialize<IEnumerable<GetProductsToView>>(TempData["Products"]?.ToString());
+            ViewBag.Products = JsonSerializer.Deserialize<Filter<GetProductsToView>>(TempData["Products"]?.ToString());
+            ViewBag.CategoryGuid = JsonSerializer.Deserialize<Guid>(TempData["CategoryGuid"]?.ToString());
+
             return View();
         }
 
         [HttpGet("/product/category/{id}")]
-        public async Task<IActionResult> GetAllProductsByCategory(Guid id)
+        public async Task<IActionResult> GetAllProductsByCategory(Guid id, [FromQuery] int currentPage)
         {
-            FilterProduct filter = new FilterProduct();
-            filter.CategoryId = id;
-            IEnumerable<GetProductsToView> products = await _productService.GetAllProductsByCategoryId(filter);
+            FilterProduct filter = new()
+            {
+                CategoryId = id,
+                pageSize = 4,
+                page = currentPage
+            };
+            Filter<GetProductsToView> products = await _productService.GetAllProducts(filter);
             TempData["Products"] = JsonSerializer.Serialize(products);
-            
+            TempData["CategoryGuid"] = JsonSerializer.Serialize(id);
+
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> SearchProduct(FilterProduct filter)
         {
-            IEnumerable<GetProductsToView> products = await _productService.GetAllProducts(filter);
+            Filter<GetProductsToView> products = await _productService.GetAllProducts(filter);
             TempData["Products"] = JsonSerializer.Serialize(products);
-
+            TempData["CategoryGuid"] = JsonSerializer.Serialize(products.Data.First().Id);
             return RedirectToAction("Index");
         }
-      /*  [HttpGet]
-        public async Task<IActionResult> Pagination(Filter filter)
-        {
-            
-        }*/
+        /*  [HttpGet]
+          public async Task<IActionResult> Pagination(Filter filter)
+          {
+
+          }*/
         // Response view product detail
         [HttpGet("product/{id}")]
         public async Task<IActionResult> Detail(Guid id)

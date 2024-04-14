@@ -1,10 +1,10 @@
 ﻿@using QuanBichVanPS28709_ASM.Models.ProductDto
 
-@model IEnumerable<GetProductsToView>
+@model Filter<GetProductsToView>
 
     <div class="container">
         <form method="post" enctype="multipart/form-data">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Data)
             {
                 <div class="border p-3 mt-4">
                     <div class="row pb-2">

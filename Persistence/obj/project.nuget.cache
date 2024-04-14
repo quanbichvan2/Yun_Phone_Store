@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/nOhUMLxoh3BMda45JSOXt7x8uRdkgwzuCmsjA4xkELEi38MTGX7vweNnOaGkA5YqWDefVqv/7qrt7qn7nkxBg==",
+  "dgSpecHash": "1Y3M3RHF77KokwxlwuG98qS+t036qZp6AGfzX6/zQ7GKHSaqG7ZdBBWNv9Hjq7sX9SW7F7WxHSa/beBGX/41Jw==",
   "success": true,
-  "projectFilePath": "E:\\FPT\\C#4\\NET104\\Asm\\ASM\\Persistence\\Persistence.csproj",
+  "projectFilePath": "E:\\FPT\\C#4\\QuanBichVan_PS28709_ASM\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yun PC\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Yun PC\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
